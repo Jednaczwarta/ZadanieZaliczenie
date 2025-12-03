@@ -15,6 +15,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -47,23 +49,44 @@ public class MainActivity extends AppCompatActivity {
         Button generatePass = findViewById(R.id.generatePassBTN);
         Button commit = findViewById(R.id.commitBTN);
 
-        int quantityInt = Integer.parseInt(quantity.getText().toString());
 
         StringBuilder allowedCharacters = new StringBuilder();
         allowedCharacters.append("abcdefghijklmnopqrstuwvxyz");
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
-        generatePass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (quantityInt < 4) {
-                    builder.setMessage("Hasło jest za krótkie").setTitle("Błąd");
-                    AlertDialog error = builder.create();
-                }else {
+        Random rn = new Random();
 
+        generatePass.setOnClickListener(v -> {
+            int quantityInt = Integer.parseInt(quantity.getText().toString());
+            if (quantityInt < 4) {
+                builder.setMessage("Hasło jest za krótkie").setTitle("Błąd");
+                AlertDialog error = builder.create();
+                error.show();
+            }else {
+                if (smallAndCapital.isChecked()) {
+                    allowedCharacters.append("ABCDEFGHIJKLMNOPQRSTUWVXYZ");
                 }
+                if (numbers.isChecked()) {
+                    allowedCharacters.append("0123456789");
+                }
+                if (specialLetters.isChecked()) {
+                    allowedCharacters.append("!@#$%^&*");
+                }
+
+                StringBuilder password = new StringBuilder();
+
+                for (int i = 0; i < quantityInt; i++) {
+                    password.append(allowedCharacters.charAt(rn.nextInt(allowedCharacters.length())));
+                }
+                builder.setMessage(password).setTitle("Wygenerowane hasło");
+                AlertDialog newPass = builder.create();
+                newPass.show();
             }
+        });
+
+        commit.setOnClickListener(v -> {
+            String nameStr = name.getText().toString();
         });
     }
 }
