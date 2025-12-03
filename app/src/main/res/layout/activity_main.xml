@@ -17,11 +17,13 @@
         android:textSize="20sp"/>
     
     <EditText
+        android:id="@+id/nameET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Imię"/>
 
     <EditText
+        android:id="@+id/surnameET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nazwisko"/>
@@ -49,26 +51,31 @@
         android:layout_marginTop="30dp"/>
 
     <EditText
+        android:id="@+id/quantityET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Ile znaków?"/>
 
     <CheckBox
+        android:id="@+id/smallAndCapitalCB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Małe i wielkie litery"/>
 
     <CheckBox
+        android:id="@+id/numbersCB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cyfry"/>
 
     <CheckBox
+        android:id="@+id/specialLettersCB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Znaki specjalne"/>
 
     <Button
+        android:id="@+id/generatePassBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Generuj hasło"
@@ -76,6 +83,7 @@
         android:backgroundTint="#4682B4"/>
 
     <Button
+        android:id="@+id/commitBTN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Zatwierdź"
