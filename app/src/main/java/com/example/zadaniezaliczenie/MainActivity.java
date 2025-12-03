@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
         Random rn = new Random();
 
+        StringBuilder password = new StringBuilder();
+
         generatePass.setOnClickListener(v -> {
             int quantityInt = Integer.parseInt(quantity.getText().toString());
             if (quantityInt < 4) {
@@ -74,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
                     allowedCharacters.append("!@#$%^&*");
                 }
 
-                StringBuilder password = new StringBuilder();
 
                 for (int i = 0; i < quantityInt; i++) {
                     password.append(allowedCharacters.charAt(rn.nextInt(allowedCharacters.length())));
@@ -87,6 +88,14 @@ public class MainActivity extends AppCompatActivity {
 
         commit.setOnClickListener(v -> {
             String nameStr = name.getText().toString();
+            String surnameStr = surname.getText().toString();
+            String work = spinner.getSelectedItem().toString();
+
+            String message = "Imię: " + nameStr + "\n" + "Nazwisko: " + surnameStr + "\n" + "Stanowisko: " + work + "\n" + "Hasło: " + password + "\n";
+
+            builder.setMessage(message).setTitle("Dane pracownika");
+            AlertDialog workman = builder.create();
+            workman.show();
         });
     }
 }
